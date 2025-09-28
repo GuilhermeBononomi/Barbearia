@@ -1,5 +1,8 @@
+import models.dao.EnderecoDAO;
+
 public class App {
     public static void main(String[] args) {
-        System.out.println("hello world");
+        EnderecoDAO table = new EnderecoDAO();
+        table.criarTabelaEndereco();
     }
 }
