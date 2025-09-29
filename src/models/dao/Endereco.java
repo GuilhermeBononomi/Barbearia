@@ -7,7 +7,7 @@ public class Endereco {
   private int numero;
   private String cep;
 
-  public Endereco() {}
+  public Endereco() { }
 
   protected int getIdEndereco() {
     return idEndereco;

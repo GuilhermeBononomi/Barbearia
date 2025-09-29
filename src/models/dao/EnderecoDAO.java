@@ -1,5 +1,6 @@
 package models.dao;
 
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -47,14 +48,51 @@ public class EnderecoDAO implements IEndereco {
 
   @Override
   public Endereco selecionarEndereco(int idEndereco) {
-    // TODO Auto-generated method stub
-    return null;
+    Endereco endereco = new Endereco();
+
+    try {
+      String SQL = 
+      "SELECT * FROM endereco WHERE idendereco = " + idEndereco;
+      
+      ResultSet resultado = stmt.executeQuery(SQL);
+
+      if (!resultado.wasNull()) {
+        resultado.next();
+        // endereco.setBairro(resultado.getString("bairro"));
+        // endereco.setCep(resultado.getString("cep"));
+        // endereco.setRua(resultado.getString("rua"));
+        // endereco.setNumero(resultado.getInt("numero"));
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    return endereco;
   }
 
   @Override
   public ArrayList<Endereco> selecionarTodosEnderecos() {
-    // TODO Auto-generated method stub
-    return null;
+    ArrayList<Endereco> lista = new ArrayList<>();
+    try {
+      
+      String SQL = "SELECT * FROM endereco";
+
+      ResultSet resultado = stmt.executeQuery(SQL);
+
+      while (resultado.next()) {
+        Endereco endereco = new Endereco();
+        endereco.setBairro(resultado.getString("bairro"));
+        endereco.setCep(resultado.getString("cep"));
+        endereco.setRua(resultado.getString("rua"));
+        endereco.setNumero(resultado.getInt("numero"));
+        lista.add(endereco);
+      }
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    return lista;
   }
 
 }
