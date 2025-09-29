@@ -1,5 +1,5 @@
 FROM openjdk:24-jdk
 WORKDIR /user/local/app
-COPY bin/ /app/
+COPY . .
 EXPOSE 3333
-CMD ["java", "-cp", "/app", "App"]
+CMD ["java", "-cp", "/bin", "App"]

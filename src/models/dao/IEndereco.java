@@ -9,7 +9,7 @@ public interface IEndereco {
   public ArrayList<Endereco> selecionarTodosEnderecos();
 
   // INSERT
-  public String inserirEndereco(Endereco endereco);
+  public String inserirEndereco(String rua, String bairro, int numero, String cep);
 
   // UPDATE
   public String atualizarEndereco(Endereco endereco);

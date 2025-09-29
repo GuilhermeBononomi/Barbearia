@@ -1,0 +1,15 @@
+{
+  "java.project.referencedLibraries": [
+    "utils/lib/postgresql.jar"
+  ],
+  "sqltools.connections": [
+    {
+      "ssh": "Disabled",
+      "previewLimit": 100,
+      "server": "localhost",
+      "driver": "PostgreSQL",
+      "connectString": "postgresql://barbearia:barbearia@localhost:5432/barbearia",
+      "name": "barbearia"
+    }
+  ]
+}

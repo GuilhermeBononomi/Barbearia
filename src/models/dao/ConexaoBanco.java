@@ -21,8 +21,8 @@ public class ConexaoBanco {
       this.stmt = this.connection.createStatement();
 
       System.out.println("Conectado ao banco: " + database);
-    } catch (ClassNotFoundException | SQLException error) {
-      error.getMessage();
+    } catch (SQLException | ClassNotFoundException error) {
+      error.printStackTrace();
     }
   }
 
