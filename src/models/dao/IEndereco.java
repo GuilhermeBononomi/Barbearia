@@ -12,7 +12,7 @@ public interface IEndereco {
   public String inserirEndereco(String rua, String bairro, int numero, String cep);
 
   // UPDATE
-  public String atualizarEndereco(Endereco endereco);
+  public String atualizarEndereco(int idEndereco, String rua, String bairro, int numero, String cep);
 
   // DELETE
   public String deletarEndereco(int idEndereco);

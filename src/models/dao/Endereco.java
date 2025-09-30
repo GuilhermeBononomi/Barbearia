@@ -9,23 +9,23 @@ public class Endereco {
 
   public Endereco() { }
 
-  protected int getIdEndereco() {
+  public int getIdEndereco() {
     return idEndereco;
   }
 
-  protected String getRua() {
+  public String getRua() {
     return rua;
   }
 
-  protected String getBairro() {
+  public String getBairro() {
     return bairro;
   }
 
-  protected int getNumero() {
+  public int getNumero() {
     return numero;
   }
 
-  protected String getCep() {
+  public String getCep() {
     return cep;
   }
 
