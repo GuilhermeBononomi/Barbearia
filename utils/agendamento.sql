@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS Agendamento (
+  IdAgendamento SERIAL PRIMARY KEY,
+  IdUsuario INTEGER NOT NULL REFERENCES Usuario(IdUsuario) ON DELETE CASCADE,
+  IdFuncionario INTEGER NOT NULL REFERENCES Funcionario(IdFuncionario) ON DELETE CASCADE,
+  Data DATE NOT NULL,
+  Inicio TIME NOT NULL,
+  Termino TIME NOT NULL
+);

@@ -1,4 +1,4 @@
-package models.dao;
+package models.dao.endereco;
 
 public class Endereco {
   private int idEndereco;
@@ -7,7 +7,8 @@ public class Endereco {
   private int numero;
   private String cep;
 
-  public Endereco() { }
+  public Endereco() {
+  }
 
   public int getIdEndereco() {
     return idEndereco;
@@ -29,23 +30,23 @@ public class Endereco {
     return cep;
   }
 
-  protected void setIdEndereco(int idEndereco) {
+  public void setIdEndereco(int idEndereco) {
     this.idEndereco = idEndereco;
   }
 
-  protected void setRua(String rua) {
+  public void setRua(String rua) {
     this.rua = rua;
   }
 
-  protected void setBairro(String bairro) {
+  public void setBairro(String bairro) {
     this.bairro = bairro;
   }
 
-  protected void setNumero(int numero) {
+  public void setNumero(int numero) {
     this.numero = numero;
   }
 
-  protected void setCep(String cep) {
+  public void setCep(String cep) {
     this.cep = cep;
   }
 }

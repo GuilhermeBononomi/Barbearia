@@ -1,4 +1,4 @@
-package models.dao;
+package models.dao.endereco;
 
 import java.util.ArrayList;
 

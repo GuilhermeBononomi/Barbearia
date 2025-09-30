@@ -1,9 +1,11 @@
-package models.dao;
+package models.dao.endereco;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import models.dao.ConexaoBanco;
 
 public class EnderecoDAO implements IEndereco {
   ConexaoBanco conexao = new ConexaoBanco();
@@ -21,9 +23,7 @@ public class EnderecoDAO implements IEndereco {
       "bairro = '" + bairro + "', " +
       "numero = " + Integer.toString(numero) + ", " +
       "cep = '" + cep + "' " +
-      "WHERE id_endereco = " + Integer.toString(idEndereco) + ";";
-
-      System.out.println(SQL);
+      "WHERE idEndereco = " + Integer.toString(idEndereco) + ";";
 
       stmt.executeUpdate(SQL);
 
@@ -36,7 +36,7 @@ public class EnderecoDAO implements IEndereco {
   @Override
   public String deletarEndereco(int idEndereco) {
     try {
-      String SQL = "DELETE FROM endereco WHERE idendereco = " + Integer.toString(idEndereco) + ";";
+      String SQL = "DELETE FROM endereco WHERE idEndereco = " + Integer.toString(idEndereco) + ";";
       stmt.executeUpdate(SQL);
       return "endereço deletado com sucesso!";
     } catch (SQLException error) {
@@ -53,16 +53,17 @@ public class EnderecoDAO implements IEndereco {
       novo.setNumero(numero);
       novo.setCep(cep);
 
-      String SQL = "INSERT INTO endereco (rua, bairro, numero, cep) VALUES ('"
-          + novo.getRua() + "','"
-          + novo.getBairro() + "','"
-          + novo.getNumero() + "','"
-          + novo.getCep() + "')";
+      String SQL =
+      "INSERT INTO endereco (rua, bairro, numero, cep) VALUES ('"
+      + novo.getRua() + "','"
+      + novo.getBairro() + "','"
+      + novo.getNumero() + "','"
+      + novo.getCep() + "')";
 
       stmt.executeUpdate(SQL);
 
       return "endereço inserido com sucesso!";
-    } catch (Exception error) {
+    } catch (SQLException error) {
       return error.getMessage();
     }
   }
@@ -70,10 +71,8 @@ public class EnderecoDAO implements IEndereco {
   @Override
   public Endereco selecionarEndereco(int idEndereco) {
     Endereco endereco = new Endereco();
-
     try {
-      String SQL = "SELECT * FROM endereco WHERE idendereco = " + idEndereco;
-
+      String SQL = "SELECT * FROM endereco WHERE idendereco = " + Integer.toString(idEndereco) + ";";
       ResultSet resultado = stmt.executeQuery(SQL);
 
       if (!resultado.wasNull()) {
@@ -83,8 +82,8 @@ public class EnderecoDAO implements IEndereco {
         endereco.setRua(resultado.getString("rua"));
         endereco.setNumero(resultado.getInt("numero"));
       }
-    } catch (Exception e) {
-      e.printStackTrace();
+    } catch (SQLException error) {
+      error.getMessage();
     }
 
     return endereco;
@@ -108,11 +107,10 @@ public class EnderecoDAO implements IEndereco {
         lista.add(endereco);
       }
 
-    } catch (Exception e) {
-      e.printStackTrace();
+    } catch (SQLException error) {
+      error.printStackTrace();
     }
 
     return lista;
   }
-
 }
