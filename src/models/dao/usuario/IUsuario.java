@@ -1,4 +1,4 @@
-package models.dao;
+package models.dao.usuario;
 
 import java.util.ArrayList;
 
@@ -16,5 +16,8 @@ public interface IUsuario {
 
   // DELETE
   public String deletarUsuario(int idUsuario);
+
+  // LOGIN
+  public boolean buscarLogin(String email, String senha);
 
 }

@@ -1,8 +1,10 @@
-package models.dao;
+package models.dao.usuario;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import models.dao.ConexaoBanco;
 
 public class UsuarioDAO implements IUsuario {
     ConexaoBanco conexao = new ConexaoBanco();
@@ -13,14 +15,36 @@ public class UsuarioDAO implements IUsuario {
 
     @Override
     public String atualizarUsuario(int idUsuario, int idEndereco, String nome, String sobrenome, String dataNascimento, String email, String senha, String dataCriacao, String dataAlteracao, boolean status) {
-        
-        return null;
+        try {
+            String SQL = "UPDATE usuario SET "
+                    + "idEndereco = " + idEndereco + ", "
+                    + "nome = '" + nome + "', "
+                    + "sobrenome = '" + sobrenome + "', "
+                    + "datanascimento = '" + dataNascimento + "', "
+                    + "email = '" + email + "', "
+                    + "senha = '" + senha + "', "
+                    + "datacriacao = '" + dataCriacao + "', "
+                    + "dataalteracao = '" + dataAlteracao + "', "
+                    + "status = " + status
+                    + " WHERE idusuario = " + idUsuario;
+            
+            stmt.executeUpdate(SQL);
+            
+            return "Usuário atualizado com sucesso!";
+        } catch (Exception error) {
+            return error.getMessage();
+        }
     }
 
     @Override
     public String deletarUsuario(int idUsuario) {
-        
-        return null;
+        try {
+            String SQL = "DELETE FROM usuario WHERE idusuario = " + idUsuario;
+            stmt.executeUpdate(SQL);
+            return "Usuário deletado com sucesso!";
+        } catch (Exception error) {
+            return error.getMessage();
+        }
     }
 
     @Override
@@ -115,6 +139,34 @@ public class UsuarioDAO implements IUsuario {
         }
 
         return lista;
+    }
+
+    @Override
+    public boolean buscarLogin(String email, String senha) {
+        Usuario usuario = new Usuario();
+
+        try {
+            String SQL = "SELECT * FROM usuario WHERE email = '" + email + "' AND senha = '" + senha + "'";
+            ResultSet resultado = stmt.executeQuery(SQL);
+
+            if (resultado.next()) {
+                usuario.setIdUsuario(resultado.getInt("idUsuario"));
+                usuario.setIdEndereco(resultado.getInt("idEndereco"));
+                usuario.setNome(resultado.getString("nome"));
+                usuario.setSobrenome(resultado.getString("sobrenome"));
+                usuario.setDataNascimento(resultado.getString("datanascimento"));
+                usuario.setEmail(resultado.getString("email"));
+                usuario.setSenha(resultado.getString("senha"));
+                usuario.setDataCriacao(resultado.getString("datacriacao"));
+                usuario.setDataAlteracao(resultado.getString("dataalteracao"));
+                usuario.setStatus(resultado.getBoolean("status"));
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 
 }
