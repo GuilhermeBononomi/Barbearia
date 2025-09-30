@@ -1,4 +1,4 @@
-package models.dao;
+package models.dao.usuario;
 
 public class Usuario {
     private int idUsuario;
