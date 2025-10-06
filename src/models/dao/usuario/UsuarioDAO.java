@@ -62,7 +62,7 @@ public class UsuarioDAO implements IUsuario {
             novo.setDataAlteracao(dataAlteracao);
             novo.setStatus(status);
 
-            String SQL = "INSERT INTO endereco (rua, bairro, numero, cep) VALUES ('"
+            String SQL = "INSERT INTO usuario (idEndereco, nome, sobrenome, datanascimento, email, senha, datacriacao, dataalteracao, status) VALUES ('"
                     + novo.getIdEndereco() + "','"
                     + novo.getNome() + "','"
                     + novo.getSobrenome() + "','"
@@ -75,7 +75,7 @@ public class UsuarioDAO implements IUsuario {
 
             stmt.executeUpdate(SQL);
 
-            return "endereço inserido com sucesso!";
+            return "usuario inserido com sucesso!";
         } catch (Exception error) {
             return error.getMessage();
         }
@@ -142,7 +142,7 @@ public class UsuarioDAO implements IUsuario {
     }
 
     @Override
-    public boolean buscarLogin(String email, String senha) {
+    public Usuario buscarLogin(String email, String senha) {
         Usuario usuario = new Usuario();
 
         try {
@@ -160,13 +160,12 @@ public class UsuarioDAO implements IUsuario {
                 usuario.setDataCriacao(resultado.getString("datacriacao"));
                 usuario.setDataAlteracao(resultado.getString("dataalteracao"));
                 usuario.setStatus(resultado.getBoolean("status"));
-                return true;
+    
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        return false;
+        return usuario;
     }
 
 }
