@@ -14,7 +14,7 @@ public class Usuario {
 
     public Usuario() {
     }
-
+    
     public int getIdUsuario() {
         return idUsuario;
     }

@@ -18,6 +18,6 @@ public interface IUsuario {
   public String deletarUsuario(int idUsuario);
 
   // LOGIN
-  public boolean buscarLogin(String email, String senha);
+  public Usuario buscarLogin(String email, String senha);
 
 }
