@@ -3,6 +3,8 @@ package controller;
 import java.util.Scanner;
 
 public class TelaCadastro {
+        Scanner s = new Scanner (System.in);
+
         public void IniciarCadastro(){
             solicitarNomeUsuario();
             solicitarSenhaUsuario();
@@ -18,7 +20,6 @@ public class TelaCadastro {
         public String solicitarNomeUsuario(){
             
             String nome;
-            Scanner s = new Scanner(System.in);
             do{
                 System.out.println("Por favor, Informe seu nome Completo*: ");
                 nome = s.nextLine();
@@ -33,7 +34,6 @@ public class TelaCadastro {
         }
         //feito
         public String solicitarSenhaUsuario(){
-            Scanner s = new Scanner(System.in);
             String senha;
             do{
                 System.out.println("Informe uma Senha*: ");
@@ -44,7 +44,6 @@ public class TelaCadastro {
         }
         //feito
         public String solicitarEmailUsuario(){
-            Scanner s = new Scanner(System.in);
             String email;
             do{
                 System.out.println("Informe Seu Email*: ");
@@ -55,14 +54,12 @@ public class TelaCadastro {
 
         public String solicitarTelefoneUsuario(){
             System.out.println("Informe Seu Telefone*: ");
-            Scanner s = new Scanner(System.in);
             String telefone;
             telefone = s.nextLine();
             return telefone;
         }
 
         public String solicitarEnderecoUsuario(){
-            Scanner s = new Scanner (System.in);
             String endereco;
             boolean isEnderecoValido;
             do{
@@ -78,7 +75,6 @@ public class TelaCadastro {
         }
 
         public String solicitarDataNascimentoUsuario(){
-            Scanner s = new Scanner (System.in);
             String dataNascimento;
             boolean isDataNascimentoVazia;
             
@@ -98,7 +94,6 @@ public class TelaCadastro {
         }
 
         public String solicitarCPFUsuario(){
-            Scanner s = new Scanner (System.in);
             String cpf;
             do{
                 System.out.println("Informe Seu CPF:");
@@ -116,8 +111,8 @@ public class TelaCadastro {
             }
 
             if(senha.length() < 6){
-               System.out.println("Senha Precisa Ter no Mínimo 6 caracteres!");
-               return false;
+                System.out.println("Senha Precisa Ter no Mínimo 6 caracteres!");
+                return false;
             }
         // Verificar Letra Maíuscula
             boolean letraMaiscula = false;

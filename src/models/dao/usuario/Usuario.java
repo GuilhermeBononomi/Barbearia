@@ -6,6 +6,8 @@ public class Usuario {
     private String nome;
     private String sobrenome;
     private String dataNascimento;
+    private String cpf;
+    private String telefone;
     private String email;
     private String senha;
     private String dataCriacao;
@@ -15,6 +17,22 @@ public class Usuario {
     public Usuario() {
     }
     
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
     public int getIdUsuario() {
         return idUsuario;
     }
