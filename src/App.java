@@ -1,15 +1,24 @@
 import java.util.Scanner;
 
-import controller.TelaUsuario;
+import controller.UsuarioController;
+import models.dao.endereco.EnderecoDAO;
 import models.dao.usuario.Usuario;
+import models.dao.usuario.UsuarioDAO;
 
 public class App {
     public static void main(String[] args) {
 
         Scanner ler = new Scanner(System.in);
-        TelaUsuario telaUsuario = new TelaUsuario();
+        UsuarioController telaUsuario = new UsuarioController();
         Usuario usuario = new Usuario();
+
+        UsuarioDAO daousuario = new UsuarioDAO();
+        EnderecoDAO daoendereco = new EnderecoDAO();
+
         int opcoes = 0;
+        boolean validaErro;
+        String email = "";
+        String senha = "";
         
         System.out.println("=======================================================");
         System.out.println("=                    Seja Bem Vindo                   =");
@@ -32,8 +41,32 @@ public class App {
                 
                 break;
             case 2:
-                usuario = telaUsuario.realizarLogin();
+                System.out.println();
+                System.out.println("=======================================================");
+                System.out.println("=                    Seja Bem Vindo                   =");
+                System.out.println("=======================================================");
+                do {
+                    System.out.println("\nFaça seu Login");
+                    System.out.println("Informe seu Email:");
+                    email = ler.next();
+                    System.out.println("\nInforme sua Senha:");
+                    senha = ler.next();
+                    usuario = telaUsuario.validarLogin(email, senha);
+                    if (usuario.getNome() != null) {
+                        System.out.println("\nLogin efetuado com sucesso!");
+                        validaErro = false;
+                    } else {
+                        System.out.println("Erro ao efetuar o login!");
+                        System.out.println("Tente novamente!\n");
+                        validaErro = true;
+                    }
+                } while (validaErro);
                 System.out.println("Olá, " + usuario.getNome());
+
+                System.out.println("Selecione a opção que deseja realizar:");
+                System.out.println("1. Fazer novo agendamento");
+                System.out.println("2. Ver próximos agendamentos");
+
                 break;
             case 3:
                 
