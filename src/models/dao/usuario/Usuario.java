@@ -63,18 +63,6 @@ public class Usuario {
     protected void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
-    public String getCpf(){
-        return cpf;
-    }
-    protected void setCpf(String cpf){
-        this.cpf = cpf;
-    }
-    public String getTelefone(){
-        return telefone;
-    }
-    protected void setTelefone(String telefone){
-        this.telefone = telefone;
-    }
     public String getEmail() {
         return email;
     }

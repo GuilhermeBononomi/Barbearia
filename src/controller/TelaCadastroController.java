@@ -1,6 +1,9 @@
 package controller;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Scanner;
+import java.time.format.DateTimeParseException;
 
 import models.dao.endereco.EnderecoDAO;
 import models.dao.usuario.UsuarioDAO;
@@ -24,7 +27,7 @@ public class TelaCadastroController {
 
             do{
                 System.out.println("Por favor, Informe seu nome Completo*: ");
-                nome = s.nextLine();
+                nome = s.next();
 
                 if (nome == null || nome.trim().isEmpty()){
                     System.out.println("Nome é Obrigatório");
@@ -43,7 +46,7 @@ public class TelaCadastroController {
             String senha;
             do{
                 System.out.println("Informe uma Senha*: ");
-                senha = s.nextLine();
+                senha = s.next();
             }while(!isSenhaValida(senha));
             
             return senha;
@@ -53,7 +56,7 @@ public class TelaCadastroController {
             String email;
             do{
                 System.out.println("Informe Seu Email*: ");
-                email = s.nextLine();
+                email = s.next();
             }while(!verificarEmail(email));
             return email;
         }
@@ -61,7 +64,7 @@ public class TelaCadastroController {
         public String solicitarTelefoneUsuario(){
             System.out.println("Informe Seu Telefone*: ");
             String telefone;
-            telefone = s.nextLine();
+            telefone = s.next();
             return telefone;
         }
 
@@ -100,7 +103,7 @@ public class TelaCadastroController {
 
             do{
                 System.out.println("Informe a Rua*:");
-                rua = s.nextLine();
+                rua = s.next();
                 if(rua == null || rua.trim().isEmpty()){
                     isValido = false;
                 }else{
@@ -110,7 +113,7 @@ public class TelaCadastroController {
 
             do{
                 System.out.println("Informe o Bairro*: ");
-                bairro = s.nextLine();
+                bairro = s.next();
                 if(bairro == null || bairro.trim().isEmpty()){
                     isValido = false;
                 }else{
@@ -130,7 +133,7 @@ public class TelaCadastroController {
 
             do{
                 System.out.println("Informe o CEP*: ");
-                cep = s.nextLine();
+                cep = s.next();
                 if(cep == null || cep.trim().isEmpty()){
                     isValido = false;
                 }else{
@@ -154,16 +157,23 @@ public class TelaCadastroController {
             boolean isDataNascimentoVazia;
             
             do{
-                System.out.println("Informe Sua Data de Nascimento*:");
-                dataNascimento = s.nextLine();
+                System.out.println("Informe Sua Data de Nascimento* (AAAA-MM-DD):");
+                dataNascimento = s.next();
 
                 if(dataNascimento == null || dataNascimento.trim().isEmpty()){
                     System.out.println("Data de Nascimento Não Pode ser Vazia!");
                     isDataNascimentoVazia = false;
                 }else{
-                    isDataNascimentoVazia = true;
-                }
 
+                    // Try e Catch para Ver se o Formato da Data está AAAA-MM-DD, se não, Repetir a pergunta
+                    try{
+                        LocalDate.parse(dataNascimento);
+                        isDataNascimentoVazia = true;
+                    }catch(DateTimeParseException e){
+                        System.out.println("Data de Nascimento Inválida!!");
+                        isDataNascimentoVazia = false;
+                    }
+                }
             }while(isDataNascimentoVazia == false);
             return dataNascimento;
         }
@@ -172,7 +182,7 @@ public class TelaCadastroController {
             String cpf;
             do{
                 System.out.println("Informe Seu CPF:");
-                cpf = s.nextLine();
+                cpf = s.next();
             }while(!verificarCPF(cpf));
             return cpf;
         }
@@ -284,29 +294,12 @@ public class TelaCadastroController {
 
             if (idEnderecoCriado > 0){
                 UsuarioDAO crudUsuario = new UsuarioDAO();
-                String Inserindo = crudUsuario.inserirUsuario(idEnderecoCriado, nome, null, dataNascimento, cpf, telefone, email, senha, dataCriacao, null, true);
+                String Inserindo = crudUsuario.inserirUsuario(idEnderecoCriado, nome, null, dataNascimento, cpf, telefone, email, senha, dataCriacao, "2020-10-10", true);
 
                 System.out.println("Usuário Inserido Com Sucesso!! -->> "+Inserindo);
             }else{
                 System.out.println("Erro ao Cadastrar Endereço, Usuário Não Cadastrado -->> "+InserirEndereco);
-            }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
-        
+            }       
         }
 
 }
