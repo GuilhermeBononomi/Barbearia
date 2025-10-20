@@ -6,6 +6,8 @@ public class Usuario {
     private String nome;
     private String sobrenome;
     private String dataNascimento;
+    private String cpf;
+    private String telefone;
     private String email;
     private String senha;
     private String dataCriacao;
@@ -44,6 +46,18 @@ public class Usuario {
     }
     protected void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+    public String getCpf(){
+        return cpf;
+    }
+    protected void setCpf(String cpf){
+        this.cpf = cpf;
+    }
+    public String getTelefone(){
+        return telefone;
+    }
+    protected void setTelefone(String telefone){
+        this.telefone = telefone;
     }
     public String getEmail() {
         return email;

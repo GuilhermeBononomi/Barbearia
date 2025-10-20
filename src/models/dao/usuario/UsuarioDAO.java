@@ -48,7 +48,7 @@ public class UsuarioDAO implements IUsuario {
     }
 
     @Override
-    public String inserirUsuario(int idEndereco, String nome, String sobrenome, String dataNascimento, String email,
+    public String inserirUsuario(int idEndereco, String nome, String sobrenome, String dataNascimento, String cpf, String telefone, String email,
             String senha, String dataCriacao, String dataAlteracao, boolean status) {
         try {
             Usuario novo = new Usuario();
@@ -56,17 +56,21 @@ public class UsuarioDAO implements IUsuario {
             novo.setNome(nome);
             novo.setSobrenome(sobrenome);
             novo.setDataNascimento(dataNascimento);
+            novo.setCpf(cpf);
+            novo.setTelefone(telefone);
             novo.setEmail(email);
             novo.setSenha(senha);
             novo.setDataCriacao(dataCriacao);
             novo.setDataAlteracao(dataAlteracao);
             novo.setStatus(status);
 
-            String SQL = "INSERT INTO usuario (idEndereco, nome, sobrenome, datanascimento, email, senha, datacriacao, dataalteracao, status) VALUES ('"
+            String SQL = "INSERT INTO usuario (idEndereco, primeironome, sobrenome, datanascimento, cpf, telefone, email, senha, datacriacao, dataalteracao, status) VALUES ('"
                     + novo.getIdEndereco() + "','"
                     + novo.getNome() + "','"
                     + novo.getSobrenome() + "','"
                     + novo.getDataNascimento() + "','"
+                    + novo.getCpf() + "','"
+                    + novo.getTelefone() + "','"
                     + novo.getEmail() + "','"
                     + novo.getSenha() + "','"
                     + novo.getDataCriacao() + "','"

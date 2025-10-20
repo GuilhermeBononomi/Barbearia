@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+import controller.TelaCadastroController;
 import controller.TelaUsuario;
 import models.dao.usuario.Usuario;
 
@@ -8,6 +9,7 @@ public class App {
 
         Scanner ler = new Scanner(System.in);
         TelaUsuario telaUsuario = new TelaUsuario();
+        TelaCadastroController telaCadastroController = new TelaCadastroController();
         Usuario usuario = new Usuario();
         int opcoes = 0;
         
@@ -29,7 +31,7 @@ public class App {
                 System.exit(0);
                 break;
             case 1:
-                
+                telaCadastroController.IniciarCadastro();
                 break;
             case 2:
                 usuario = telaUsuario.realizarLogin();
