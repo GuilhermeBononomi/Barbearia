@@ -1,3 +1,5 @@
+drop table if EXISTS funcionario;
+
 CREATE TABLE IF NOT EXISTS Funcionario (
   IdFuncionario SERIAL PRIMARY KEY,
   IdUsuario INTEGER NOT NULL REFERENCES Usuario(IdUsuario) ON DELETE CASCADE,

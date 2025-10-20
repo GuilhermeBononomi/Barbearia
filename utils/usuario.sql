@@ -1,3 +1,6 @@
+
+drop table if EXISTS usuario;
+
 CREATE TABLE IF NOT EXISTS Usuario (
   IdUsuario SERIAL PRIMARY KEY,
   IdEndereco INTEGER REFERENCES Endereco(IdEndereco) ON DELETE SET NULL,

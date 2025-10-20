@@ -17,6 +17,22 @@ public class Usuario {
     public Usuario() {
     }
     
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
     public int getIdUsuario() {
         return idUsuario;
     }

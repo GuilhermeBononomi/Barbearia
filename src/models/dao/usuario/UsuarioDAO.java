@@ -14,13 +14,15 @@ public class UsuarioDAO implements IUsuario {
     }
 
     @Override
-    public String atualizarUsuario(int idUsuario, int idEndereco, String nome, String sobrenome, String dataNascimento, String email, String senha, String dataCriacao, String dataAlteracao, boolean status) {
+    public String atualizarUsuario(int idUsuario, int idEndereco, String nome, String sobrenome, String dataNascimento, String cpf, String telefone, String email, String senha, String dataCriacao, String dataAlteracao, boolean status) {
         try {
             String SQL = "UPDATE usuario SET "
                     + "idEndereco = " + idEndereco + ", "
                     + "nome = '" + nome + "', "
                     + "sobrenome = '" + sobrenome + "', "
                     + "datanascimento = '" + dataNascimento + "', "
+                    + "cpf = '" + cpf + "', "
+                    + "telefone = '" + telefone + "', "
                     + "email = '" + email + "', "
                     + "senha = '" + senha + "', "
                     + "datacriacao = '" + dataCriacao + "', "
@@ -64,8 +66,8 @@ public class UsuarioDAO implements IUsuario {
             novo.setDataAlteracao(dataAlteracao);
             novo.setStatus(status);
 
-            String SQL = "INSERT INTO usuario (idEndereco, primeironome, sobrenome, datanascimento, cpf, telefone, email, senha, datacriacao, dataalteracao, status) VALUES ('"
-                    + novo.getIdEndereco() + "','"
+            String SQL = "INSERT INTO usuario (idEndereco, primeironome, sobrenome, datanascimento, cpf, telefone, email, senha, datacriacao, dataalteracao, status) VALUES ("
+                    + novo.getIdEndereco() + ",'"
                     + novo.getNome() + "','"
                     + novo.getSobrenome() + "','"
                     + novo.getDataNascimento() + "','"
@@ -74,8 +76,8 @@ public class UsuarioDAO implements IUsuario {
                     + novo.getEmail() + "','"
                     + novo.getSenha() + "','"
                     + novo.getDataCriacao() + "','"
-                    + novo.getDataAlteracao() + "','"
-                    + novo.isStatus() + "')";
+                    + novo.getDataAlteracao() + "',"
+                    + novo.isStatus() + ")";
 
             stmt.executeUpdate(SQL);
 
@@ -101,6 +103,8 @@ public class UsuarioDAO implements IUsuario {
                 usuario.setNome(resultado.getString("nome"));
                 usuario.setSobrenome(resultado.getString("sobrenome"));
                 usuario.setDataNascimento(resultado.getString("datanascimento"));
+                usuario.setCpf(resultado.getString("cpf"));
+                usuario.setTelefone(resultado.getString("telefone"));
                 usuario.setEmail(resultado.getString("email"));
                 usuario.setSenha(resultado.getString("senha"));
                 usuario.setDataCriacao(resultado.getString("datacriacao"));
@@ -130,6 +134,8 @@ public class UsuarioDAO implements IUsuario {
                 usuario.setNome(resultado.getString("nome"));
                 usuario.setSobrenome(resultado.getString("sobrenome"));
                 usuario.setDataNascimento(resultado.getString("datanascimento"));
+                usuario.setCpf(resultado.getString("cpf"));
+                usuario.setTelefone(resultado.getString("telefone"));
                 usuario.setEmail(resultado.getString("email"));
                 usuario.setSenha(resultado.getString("senha"));
                 usuario.setDataCriacao(resultado.getString("datacriacao"));
@@ -154,11 +160,13 @@ public class UsuarioDAO implements IUsuario {
             ResultSet resultado = stmt.executeQuery(SQL);
 
             if (resultado.next()) {
-                usuario.setIdUsuario(resultado.getInt("idUsuario"));
-                usuario.setIdEndereco(resultado.getInt("idEndereco"));
-                usuario.setNome(resultado.getString("nome"));
+                usuario.setIdUsuario(resultado.getInt("idusuario"));
+                usuario.setIdEndereco(resultado.getInt("idendereco"));
+                usuario.setNome(resultado.getString("primeironome"));
                 usuario.setSobrenome(resultado.getString("sobrenome"));
                 usuario.setDataNascimento(resultado.getString("datanascimento"));
+                usuario.setCpf(resultado.getString("cpf"));
+                usuario.setTelefone(resultado.getString("telefone"));
                 usuario.setEmail(resultado.getString("email"));
                 usuario.setSenha(resultado.getString("senha"));
                 usuario.setDataCriacao(resultado.getString("datacriacao"));
