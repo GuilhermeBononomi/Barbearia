@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+import controller.TelaCadastroController;
 import controller.UsuarioController;
 import models.dao.endereco.EnderecoDAO;
 import models.dao.usuario.Usuario;
@@ -14,6 +15,8 @@ public class App {
 
         UsuarioDAO daousuario = new UsuarioDAO();
         EnderecoDAO daoendereco = new EnderecoDAO();
+
+        TelaCadastroController telaCadastroController = new TelaCadastroController();
 
         int opcoes = 0;
         boolean validaErro;
@@ -38,7 +41,7 @@ public class App {
                 System.exit(0);
                 break;
             case 1:
-                
+                telaCadastroController.IniciarCadastro();
                 break;
             case 2:
                 System.out.println();

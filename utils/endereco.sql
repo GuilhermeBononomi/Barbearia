@@ -7,3 +7,4 @@ CREATE TABLE IF NOT EXISTS Endereco (
   Numero INTEGER,
   Cep VARCHAR(20)
 );
+

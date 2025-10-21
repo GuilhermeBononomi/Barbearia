@@ -15,3 +15,4 @@ CREATE TABLE IF NOT EXISTS Usuario (
   DataAlteracao TIMESTAMP,
   Status BOOLEAN DEFAULT TRUE
 );
+
