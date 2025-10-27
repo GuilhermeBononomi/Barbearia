@@ -20,12 +20,12 @@ public class AgendamentoDAO implements IAgendamento {
         try {
             String SQL =
                     "UPDATE agendamento SET " +
-                            "id_usuario = " + Integer.toString(idUsuario) + ", " +
-                            "id_funcionario = " + Integer.toString(idFuncionario) + ", " +
+                            "idusuario = " + Integer.toString(idUsuario) + ", " +
+                            "idfuncionario = " + Integer.toString(idFuncionario) + ", " +
                             "data = '" + data + "', " +
                             "inicio = '" + inicio + "', " +
                             "termino = '" + termino + "' " +
-                            "WHERE id_agendamento = " + Integer.toString(idAgendamento) + ";";
+                            "WHERE idagendamento = " + Integer.toString(idAgendamento) + ";";
 
             stmt.executeUpdate(SQL);
 
@@ -38,7 +38,7 @@ public class AgendamentoDAO implements IAgendamento {
     @Override
     public String deletarAgendamento(int idAgendamento) {
         try {
-            String SQL = "DELETE FROM agendamento WHERE id_agendamento = " + Integer.toString(idAgendamento) + ";";
+            String SQL = "DELETE FROM agendamento WHERE idagendamento = " + Integer.toString(idAgendamento) + ";";
             stmt.executeUpdate(SQL);
             return "agendamento deletado com sucesso!";
         } catch (SQLException error) {
@@ -56,7 +56,7 @@ public class AgendamentoDAO implements IAgendamento {
             novo.setInicio(inicio);
             novo.setTermino(termino);
 
-            String SQL = "INSERT INTO agendamento (id_usuario, id_funcionario, data, inicio, termino) VALUES ("
+            String SQL = "INSERT INTO agendamento (idusuario, idfuncionario, data, inicio, termino) VALUES ("
                     + novo.getIdUsuario() + ","
                     + novo.getIdFuncionario() + ",'"
                     + novo.getData() + "','"
@@ -75,12 +75,12 @@ public class AgendamentoDAO implements IAgendamento {
     public Agendamento selecionarAgendamento(int idAgendamento) {
         Agendamento agendamento = new Agendamento();
         try {
-            String SQL = "SELECT * FROM agendamento WHERE id_agendamento = " + Integer.toString(idAgendamento) + ";";
+            String SQL = "SELECT * FROM agendamento WHERE idagendamento = " + Integer.toString(idAgendamento) + ";";
             ResultSet rs = stmt.executeQuery(SQL);
             if (rs.next()) {
-                agendamento.setIdAgendamento(rs.getInt("id_agendamento"));
-                agendamento.setIdUsuario(rs.getInt("id_usuario"));
-                agendamento.setIdFuncionario(rs.getInt("id_funcionario"));
+                agendamento.setIdAgendamento(rs.getInt("idagendamento"));
+                agendamento.setIdUsuario(rs.getInt("idusuario"));
+                agendamento.setIdFuncionario(rs.getInt("idfuncionario"));
                 agendamento.setData(rs.getString("data"));
                 agendamento.setInicio(rs.getString("inicio"));
                 agendamento.setTermino(rs.getString("termino"));
@@ -92,16 +92,37 @@ public class AgendamentoDAO implements IAgendamento {
     }   
 
     @Override
-    public ArrayList<Agendamento> selecionarTodosAgendamentos() {
+    public ArrayList<Agendamento> selecionarTodosAgendamentos(int idUsuario) {
         ArrayList<Agendamento> agendamentos = new ArrayList<>();
         try {
-            String SQL = "SELECT * FROM agendamento;";
+            String SQL = "SELECT * FROM agendamento WHERE idusuario = '" + idUsuario + "';";
             ResultSet rs = stmt.executeQuery(SQL);
             while (rs.next()) {
                 Agendamento agendamento = new Agendamento();
-                agendamento.setIdAgendamento(rs.getInt("id_agendamento"));
-                agendamento.setIdUsuario(rs.getInt("id_usuario"));
-                agendamento.setIdFuncionario(rs.getInt("id_funcionario"));
+                agendamento.setIdAgendamento(rs.getInt("idagendamento"));
+                agendamento.setIdUsuario(rs.getInt("idusuario"));
+                agendamento.setIdFuncionario(rs.getInt("idfuncionario"));
+                agendamento.setData(rs.getString("data"));
+                agendamento.setInicio(rs.getString("inicio"));
+                agendamento.setTermino(rs.getString("termino"));
+                agendamentos.add(agendamento);
+            }
+        } catch (SQLException error) {
+            System.out.println("erro ao selecionar todos os agendamentos" + error);
+        }
+        return agendamentos;
+    }   
+
+    public ArrayList<Agendamento> buscarProximosAgendamentos(int idUsuario) {
+        ArrayList<Agendamento> agendamentos = new ArrayList<>();
+        try {
+            String SQL = "SELECT * FROM agendamento where data >= CURRENT_DATE and idusuario = '" + idUsuario + "';";
+            ResultSet rs = stmt.executeQuery(SQL);
+            while (rs.next()) {
+                Agendamento agendamento = new Agendamento();
+                agendamento.setIdAgendamento(rs.getInt("idagendamento"));
+                agendamento.setIdUsuario(rs.getInt("idusuario"));
+                agendamento.setIdFuncionario(rs.getInt("idfuncionario"));
                 agendamento.setData(rs.getString("data"));
                 agendamento.setInicio(rs.getString("inicio"));
                 agendamento.setTermino(rs.getString("termino"));

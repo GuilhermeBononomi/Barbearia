@@ -52,11 +52,9 @@ public class FuncionarioDAO implements IFuncionario {
             novo.setIdUsuario(idUsuario);
             novo.setCargo(cargo);
 
-            String SQL = "INSERT INTO funcionario (id_usuario, cargo) VALUES ("
+            String SQL = "INSERT INTO funcionario (idusuario, cargo) VALUES ("
                     + novo.getIdUsuario() + ","
                     + "'" + novo.getCargo() + "');";
-
-            
 
             stmt.executeUpdate(SQL);
 
