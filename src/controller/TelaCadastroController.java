@@ -196,8 +196,8 @@ public class TelaCadastroController {
             }
 
             if(senha.length() < 6){
-               System.out.println("Senha Precisa Ter no Mínimo 6 caracteres!");
-               return false;
+                System.out.println("Senha Precisa Ter no Mínimo 6 caracteres!");
+                return false;
             }
             // Verificar Letra Maíuscula
             boolean letraMaiscula = false;

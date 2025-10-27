@@ -6,7 +6,9 @@ public interface IAgendamento {
     //SELECT
     public Agendamento selecionarAgendamento(int idAgendamento);
 
-    public ArrayList<Agendamento> selecionarTodosAgendamentos();
+    public ArrayList<Agendamento> selecionarTodosAgendamentos(int idUsuario);
+
+    public ArrayList<Agendamento> buscarProximosAgendamentos(int idUsuario);
     //INSERT
     public String inserirAgendamento(int idUsuario, int idFuncionario, String data, String inicio, String termino);
     //UPDATE

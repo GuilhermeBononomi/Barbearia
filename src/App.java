@@ -1,8 +1,12 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import controller.TelaCadastroController;
 import controller.UsuarioController;
+import models.dao.agendamento.Agendamento;
+import models.dao.agendamento.AgendamentoDAO;
 import models.dao.endereco.EnderecoDAO;
+import models.dao.funcionario.FuncionarioDAO;
 import models.dao.usuario.Usuario;
 import models.dao.usuario.UsuarioDAO;
 
@@ -12,9 +16,13 @@ public class App {
         Scanner ler = new Scanner(System.in);
         UsuarioController telaUsuario = new UsuarioController();
         Usuario usuario = new Usuario();
+        ArrayList<Agendamento> agendamentos = new ArrayList<>();
+        TelaCadastroController telaCadastroController = new TelaCadastroController();
 
         UsuarioDAO daousuario = new UsuarioDAO();
         EnderecoDAO daoendereco = new EnderecoDAO();
+        FuncionarioDAO daofuncionario = new FuncionarioDAO();
+        AgendamentoDAO daoagendamento = new AgendamentoDAO();
 
         TelaCadastroController telaCadastroController = new TelaCadastroController();
 
@@ -22,6 +30,14 @@ public class App {
         boolean validaErro;
         String email = "";
         String senha = "";
+
+        // daoendereco.inserirEndereco("Rua", "Bairro", 10, "8989880");
+        // email = daousuario.inserirUsuario(2, "Pamonha", "pamonha", "2005-01-10", "473856765", 
+        // "47991589990", "pamo@a.com", "123", "2025-09-21", "2025-09-21", true);
+
+        // daofuncionario.inserirFuncionario(2, "Barbeiro");
+
+        // daoagendamento.inserirAgendamento(1, 1, "2025-10-18", "10:45", "11:20");
         
         System.out.println("=======================================================");
         System.out.println("=                    Seja Bem Vindo                   =");
@@ -65,10 +81,56 @@ public class App {
                     }
                 } while (validaErro);
                 System.out.println("Olá, " + usuario.getNome());
+                
+                do {
+                    System.out.println("\nSelecione a opção que deseja realizar:");
+                    System.out.println("1. Fazer novo agendamento");
+                    System.out.println("2. Ver próximos agendamentos");
+                    System.out.println("3. Ver histórico de agendamentos");
+                    System.out.println("0. Sair");
+                    opcoes = ler.nextInt();
 
-                System.out.println("Selecione a opção que deseja realizar:");
-                System.out.println("1. Fazer novo agendamento");
-                System.out.println("2. Ver próximos agendamentos");
+                    switch (opcoes) {
+                    case 0:
+                        System.out.println("Volte Sempre");
+                        System.exit(0);
+                        break;
+                    case 1:
+
+                        break;
+                    case 2:
+                        agendamentos = telaUsuario.buscarProximosAgendamentos(usuario.getIdUsuario());
+                        if (agendamentos != null) {
+                            System.out.println("Próximos Agendamentos:");
+                            for (Agendamento agenda : agendamentos) {
+                                System.out.println("\nData agendamento: " + agenda.getData());
+                                System.out.println("Hora Início: " + agenda.getInicio());
+                                System.out.println("Hora Término: " + agenda.getTermino());
+                            }
+                        } else {
+                            System.out.println("Nenhum agendamento marcado encontrado!");
+                        }
+                        break;
+                    case 3:
+                        agendamentos = telaUsuario.selecionarTodosAgendamentos(usuario.getIdUsuario());
+                        if (agendamentos != null) {
+                            System.out.println("Histórico de agendamentos:");
+                            for (Agendamento agenda : agendamentos) {
+                                System.out.println("\nData agendamento: " + agenda.getData());
+                                System.out.println("Hora Início: " + agenda.getInicio());
+                                System.out.println("Hora Término: " + agenda.getTermino());
+                            }
+                        } else {
+                            System.out.println("Nenhum agendamento encontrado!");
+                        }
+                        break;
+                    default:
+                        break;
+                    }
+
+                } while (opcoes >= 0 || opcoes <= 3);
+
+                
 
                 break;
             case 3:
