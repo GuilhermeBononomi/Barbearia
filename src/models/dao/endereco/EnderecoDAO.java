@@ -113,4 +113,20 @@ public class EnderecoDAO implements IEndereco {
 
     return lista;
   }
+
+  public int buscarUltimoIdEndereco() {
+    int ultimoId = -1; // Valor padrão em caso de erro
+    try {
+      String SQL = "SELECT MAX(idEndereco) FROM endereco;";
+      ResultSet resultado = stmt.executeQuery(SQL);
+
+      if (resultado.next()) {
+        ultimoId = resultado.getInt(1); 
+      }
+    } catch (SQLException error) {
+      System.err.println("Erro ao buscar o último ID do endereço: " + error.getMessage());
+    }
+    return ultimoId;
+  }
+
 }

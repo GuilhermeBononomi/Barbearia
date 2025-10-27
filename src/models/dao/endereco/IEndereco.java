@@ -17,4 +17,5 @@ public interface IEndereco {
   // DELETE
   public String deletarEndereco(int idEndereco);
 
+  public int buscarUltimoIdEndereco();
 }
