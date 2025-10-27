@@ -24,6 +24,8 @@ public class App {
         FuncionarioDAO daofuncionario = new FuncionarioDAO();
         AgendamentoDAO daoagendamento = new AgendamentoDAO();
 
+        TelaCadastroController telaCadastroController = new TelaCadastroController();
+
         int opcoes = 0;
         boolean validaErro;
         String email = "";
