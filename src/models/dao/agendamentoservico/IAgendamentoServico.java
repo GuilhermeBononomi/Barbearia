@@ -14,4 +14,5 @@ public interface IAgendamentoServico {
     //DELETE
     public String deletarAgendamentoServico(int idAgendamento, int idServico);
 
+    public ArrayList<AgendamentoDetalhado> buscarAgendamentoPorServico(String nome);
 }
