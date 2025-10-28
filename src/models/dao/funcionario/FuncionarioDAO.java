@@ -21,11 +21,9 @@ public class FuncionarioDAO implements IFuncionario {
         try {
             String SQL =
                     "UPDATE funcionario SET " +
-                            "id_usuario = " + Integer.toString(idUsuario) + ", " +
+                            "idusuario = " + Integer.toString(idUsuario) + ", " +
                             "cargo = '" + cargo + "' " +
-                            "WHERE id_funcionario = " + Integer.toString(idFuncionario) + ";";
-
-            
+                            "WHERE idfuncionario = " + Integer.toString(idFuncionario) + ";";
 
             stmt.executeUpdate(SQL);
 
@@ -38,7 +36,7 @@ public class FuncionarioDAO implements IFuncionario {
     @Override
     public String deletarFuncionario(int idFuncionario) {
         try {
-            String SQL = "DELETE FROM funcionario WHERE id_funcionario = " + Integer.toString(idFuncionario) + ";";
+            String SQL = "DELETE FROM funcionario WHERE idfuncionario = " + Integer.toString(idFuncionario) + ";";
             stmt.executeUpdate(SQL);
             return "funcionario deletado com sucesso!";
         } catch (SQLException error) {
@@ -66,13 +64,13 @@ public class FuncionarioDAO implements IFuncionario {
     @Override
     public Funcionario selecionarFuncionario(int idFuncionario) {
         try {
-            String SQL = "SELECT * FROM funcionario WHERE id_funcionario = " + Integer.toString(idFuncionario) + ";";
+            String SQL = "SELECT * FROM funcionario WHERE idfuncionario = " + Integer.toString(idFuncionario) + ";";
             ResultSet rs = stmt.executeQuery(SQL);
 
             if (rs.next()) {
                 Funcionario f = new Funcionario();
-                f.setIdFuncionario(rs.getInt("id_funcionario"));
-                f.setIdUsuario(rs.getInt("id_usuario"));
+                f.setIdFuncionario(rs.getInt("idfuncionario"));
+                f.setIdUsuario(rs.getInt("idusuario"));
                 f.setCargo(rs.getString("cargo"));
                 return f;
             } else {
@@ -92,8 +90,8 @@ public class FuncionarioDAO implements IFuncionario {
 
             while (rs.next()) {
                 Funcionario f = new Funcionario();
-                f.setIdFuncionario(rs.getInt("id_funcionario"));
-                f.setIdUsuario(rs.getInt("id_usuario"));
+                f.setIdFuncionario(rs.getInt("idfuncionario"));
+                f.setIdUsuario(rs.getInt("idusuario"));
                 f.setCargo(rs.getString("cargo"));
                 funcionarios.add(f);
             }
