@@ -24,10 +24,10 @@ public class TelaCadastroController {
             String nome;
             
             boolean isValido;
-
+            
             do{
                 System.out.println("Por favor, Informe seu nome Completo*: ");
-                nome = s.next();
+                nome = s.nextLine();
 
                 if (nome == null || nome.trim().isEmpty()){
                     System.out.println("Nome é Obrigatório");
@@ -44,9 +44,10 @@ public class TelaCadastroController {
         public String solicitarSenhaUsuario(){
 
             String senha;
+            
             do{
                 System.out.println("Informe uma Senha*: ");
-                senha = s.next();
+                senha = s.nextLine();
             }while(!isSenhaValida(senha));
             
             return senha;
@@ -54,9 +55,10 @@ public class TelaCadastroController {
         //feito
         public String solicitarEmailUsuario(){
             String email;
+            
             do{
                 System.out.println("Informe Seu Email*: ");
-                email = s.next();
+                email = s.nextLine();
             }while(!verificarEmail(email));
             return email;
         }
@@ -64,7 +66,7 @@ public class TelaCadastroController {
         public String solicitarTelefoneUsuario(){
             System.out.println("Informe Seu Telefone*: ");
             String telefone;
-            telefone = s.next();
+            telefone = s.nextLine();
             return telefone;
         }
 
@@ -90,67 +92,80 @@ public class TelaCadastroController {
             public void setCep(String cep) { this.cep = cep; }
         }
 
-        public Endereco solicitarEnderecoUsuario(){
+public Endereco solicitarEnderecoUsuario() {
 
-            String rua;
-            String bairro;
-            int numero;
-            String cep;
+        String rua;
+        String bairro;
+        int numero = 0; 
+        String cep;
 
-            boolean isValido;
+        boolean isValido;
 
-            System.out.println("Informe Seu Endereço");
+        System.out.println("Informe Seu Endereço");
 
-            do{
-                System.out.println("Informe a Rua*:");
-                rua = s.next();
-                if(rua == null || rua.trim().isEmpty()){
-                    isValido = false;
-                }else{
-                    isValido = true;
-                }
-            }while(isValido == false);   
+        
+        do {
+            System.out.println("Informe a Rua*:");
+            rua = s.nextLine();
+            System.out.println("Rua Informada: " + rua);
+            if (rua == null || rua.trim().isEmpty()) {
+                isValido = false;
+            } else {
+                isValido = true;
+            }
+        } while (isValido == false);
 
-            do{
-                System.out.println("Informe o Bairro*: ");
-                bairro = s.next();
-                if(bairro == null || bairro.trim().isEmpty()){
-                    isValido = false;
-                }else{
-                    isValido = true;
-                }
-            }while(isValido == false);
+        
+        do {
+            System.out.println("Informe o Bairro*: ");
+            bairro = s.nextLine();
+            if (bairro == null || bairro.trim().isEmpty()) {
+                isValido = false;
+            } else {
+                isValido = true;
+            }
+        } while (isValido == false);
 
-            do{
-                System.out.println("Informe o Número*: ");
-                numero = s.nextInt();
-                if(numero == 0){
-                    isValido = false;
-                }else{
-                    isValido = true;
-                }
-            }while(isValido == false);
-
-            do{
-                System.out.println("Informe o CEP*: ");
-                cep = s.next();
-                if(cep == null || cep.trim().isEmpty()){
-                    isValido = false;
-                }else{
-                    isValido = true;
-                }
-            }while(isValido == false);
-
+        do {
+            System.out.println("Informe o Número*: ");
+            String numeroStr = s.nextLine(); 
             
-            Endereco enderecoCompleto = new Endereco();
+            try {
+                numero = Integer.parseInt(numeroStr); 
+                
+                if (numero == 0) {
+                    System.out.println("Número não pode ser zero.");
+                    isValido = false;
+                } else {
+                    isValido = true; 
+                }
+            } catch (NumberFormatException e) {
+                
+                System.out.println("Entrada inválida. Por favor, digite apenas números.");
+                isValido = false;
+            }
+        } while (isValido == false);
+        
+        do {
+            System.out.println("Informe o CEP*: ");
+            cep = s.nextLine();
+            if (cep == null || cep.trim().isEmpty()) {
+                isValido = false;
+            } else {
+                isValido = true;
+            }
+        } while (isValido == false);
 
-            enderecoCompleto.setRua(rua);
-            enderecoCompleto.setBairro(bairro);
-            enderecoCompleto.setNumero(numero);
-            enderecoCompleto.setCep(cep);
 
-            return enderecoCompleto;    
-        }
+        Endereco enderecoCompleto = new Endereco();
+
+        enderecoCompleto.setRua(rua);
+        enderecoCompleto.setBairro(bairro);
+        enderecoCompleto.setNumero(numero);
+        enderecoCompleto.setCep(cep);
+
+        return enderecoCompleto;
+    }
 
         public String solicitarDataNascimentoUsuario(){
             String dataNascimento;
@@ -158,7 +173,7 @@ public class TelaCadastroController {
             
             do{
                 System.out.println("Informe Sua Data de Nascimento* (AAAA-MM-DD):");
-                dataNascimento = s.next();
+                dataNascimento = s.nextLine();
 
                 if(dataNascimento == null || dataNascimento.trim().isEmpty()){
                     System.out.println("Data de Nascimento Não Pode ser Vazia!");
@@ -180,9 +195,10 @@ public class TelaCadastroController {
 
         public String solicitarCPFUsuario(){
             String cpf;
+            
             do{
                 System.out.println("Informe Seu CPF:");
-                cpf = s.next();
+                cpf = s.nextLine();
             }while(!verificarCPF(cpf));
             return cpf;
         }
