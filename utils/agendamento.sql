@@ -1,5 +1,3 @@
-drop table if EXISTS agendamento;
-
 CREATE TABLE IF NOT EXISTS Agendamento (
   IdAgendamento SERIAL PRIMARY KEY,
   IdUsuario INTEGER NOT NULL REFERENCES Usuario(IdUsuario) ON DELETE CASCADE,

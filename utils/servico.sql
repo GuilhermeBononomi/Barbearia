@@ -1,5 +1,3 @@
-drop table if EXISTS servico;
-
 CREATE TABLE IF NOT EXISTS Servico (
   IdServico SERIAL PRIMARY KEY,
   Nome VARCHAR(150) NOT NULL,
