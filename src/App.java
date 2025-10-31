@@ -14,6 +14,7 @@ import models.dao.servico.Servico;
 import models.dao.servico.ServicoDAO;
 import models.dao.usuario.Usuario;
 import models.dao.usuario.UsuarioDAO;
+import view.CadastroAgendamentoView;
 
 public class App {
     public static void main(String[] args) {
@@ -107,7 +108,7 @@ public class App {
                         System.exit(0);
                         break;
                     case 1:
-
+                        new CadastroAgendamentoView(email, senha);
                         break;
                     case 2:
                         agendamentos = telaUsuario.buscarProximosAgendamentos(usuario.getIdUsuario());
