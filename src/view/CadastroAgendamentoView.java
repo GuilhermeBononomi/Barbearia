@@ -11,13 +11,34 @@ public class CadastroAgendamentoView {
     UsuarioController agendamento = new UsuarioController();
 
     public CadastroAgendamentoView(String email, String senha) {
-        int escolha;
-        int barbeiro = 0;
+        int escolha = 0;
+        int id_servico = 0;
+        int colaborador = 0;
         String data = "";
         String inicio = "";
         String termino = "";
+        String observacao = "";
 
-        System.out.println("\nSelecione o barbeiro com quem quer cortar cabelo:");
+        System.out.println("\nSelecione qual dos servicos deseja realizar:");
+        System.out.println("1. Cortar Cabelo");
+        System.out.println("2. Fazer Barba");
+        escolha = input.nextInt();
+
+        switch (escolha) {
+            case 0:
+                break;
+            case 1:
+                id_servico = 1;
+                break;
+            case 2:
+                id_servico = 2;
+                break;
+            default:
+                break;
+        }
+
+
+        System.out.println("\nSelecione um barbeiro para cortar cabelo:");
         System.out.println("1. Barbeiro 1");
         System.out.println("2. Barbeiro 2");
         System.out.println("3. Barbeiro 3");
@@ -29,22 +50,25 @@ public class CadastroAgendamentoView {
             case 0:
                 break;
             case 1:
-                barbeiro = 1;
+                colaborador = 1;
                 break;
             case 2:
-                barbeiro = 1;
+                colaborador = 2;
                 break;
             case 3:
-                barbeiro = 1;
+                colaborador = 3;
                 break;
             case 4:
-                barbeiro = 1;
+                colaborador = 4;
+                break;
+            case 5:
+                colaborador = 5;
                 break;
             default:
                 break;
         }
 
-        System.out.println("\nSelecione o dia que quer cortar cabelo:");
+        System.out.println("\nSelecione o dia no qual deseja cortar cabelo:");
         System.out.println("1. 01-11-2025");
         System.out.println("2. 02-11-2025");
         System.out.println("3. 03-11-2025");
@@ -102,7 +126,7 @@ public class CadastroAgendamentoView {
                 break;
         }
 
-        System.out.println("\nSelecione o horário que quer cortar cabelo:");
+        System.out.println("\nSelecione o horário no qual deseja cortar cabelo:");
         System.out.println("1. 07:00 - 07:30");
         System.out.println("2. 07:30 - 08:00");
         System.out.println("3. 08:00 - 08:30");
@@ -153,7 +177,10 @@ public class CadastroAgendamentoView {
                 break;
         }
 
-        agendamento.cadastrarAgendamento(email, senha, barbeiro, data, inicio, termino);
+        System.out.println("\nInsira uma observação:");
+        observacao = input.next();
+
+        agendamento.cadastrarAgendamento(email, senha, id_servico, colaborador, data, inicio, termino, observacao);
     }
 
 }

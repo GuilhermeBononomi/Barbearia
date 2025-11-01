@@ -43,12 +43,13 @@ public class App {
         String senha = "";
 
         // daoendereco.inserirEndereco("Rua", "Bairro", 10, "8989880");
-        // email = daousuario.inserirUsuario(2, "Pamonha", "pamonha", "2005-01-10", "473856765", 
+        // daousuario.inserirUsuario(2, "Pamonha", "pamonha", "2005-01-10", "473856765", 
         // "47991589990", "pamo@a.com", "123", "2025-09-21", "2025-09-21", true);
         // daofuncionario.inserirFuncionario(2, "Barbeiro");
         // daoagendamento.inserirAgendamento(1, 1, "2025-10-18", "10:45", "11:20");
         // daoservico.inserirServico("Corte de Cabelo", 50.00, "Corte de cabelo masculino");
         // daoagendamentoservico.inserirAgendamentoServico(1, 1, "Corta direito");
+        // daoagendamentoservico.inserirAgendamentoServico(5, 1, "texto de complemento");
         
         System.out.println("=======================================================");
         System.out.println("=                    Seja Bem Vindo                   =");
