@@ -89,7 +89,29 @@ public class AgendamentoDAO implements IAgendamento {
             System.out.println("erro ao selecionar o agendamento" + error);
         }
         return agendamento;
-    }   
+    }
+
+    @Override
+    public Agendamento selecionarAgendamento(String data, String inicio, String termino) {
+        Agendamento novo = new Agendamento();
+        try {
+            String SQL = "SELECT * FROM agendamento WHERE data = '" + data + "' AND inicio = '" + inicio + "' AND termino = '" + termino + "';";
+            
+            ResultSet rs = stmt.executeQuery(SQL);
+
+            if (rs.next()) {
+                novo.setIdAgendamento(rs.getInt("idagendamento"));
+                novo.setIdUsuario(rs.getInt("idusuario"));
+                novo.setIdFuncionario(rs.getInt("idfuncionario"));
+                novo.setData(rs.getString("data"));
+                novo.setInicio(rs.getString("inicio"));
+                novo.setTermino(rs.getString("termino"));
+            }
+        } catch (SQLException error) {
+            System.out.println("erro ao selecionar o agendamento" + error);
+        }
+        return novo;
+    }
 
     @Override
     public ArrayList<Agendamento> selecionarTodosAgendamentos(int idUsuario) {

@@ -20,7 +20,7 @@ public class ConexaoBanco {
       this.connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/" + database, user, password);
       this.stmt = this.connection.createStatement();
 
-      System.out.println("Conectado ao banco: " + database);
+      // System.out.println("Conectado ao banco: " + database);
     } catch (SQLException | ClassNotFoundException error) {
       error.printStackTrace();
     }
