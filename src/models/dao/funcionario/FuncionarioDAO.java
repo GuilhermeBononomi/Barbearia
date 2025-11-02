@@ -101,6 +101,23 @@ public class FuncionarioDAO implements IFuncionario {
         return funcionarios;
     }
 
+    @Override
+    public Funcionario verificarFuncionario(int idUsuario) {
+        Funcionario f = new Funcionario();
 
-    
+        try {
+            String SQL = "SELECT * FROM funcionario WHERE idusuario = " + idUsuario + ";";
+            ResultSet rs = stmt.executeQuery(SQL);
+
+            if (rs.next()) {
+                f.setIdFuncionario(rs.getInt("idfuncionario"));
+                f.setIdUsuario(rs.getInt("idusuario"));
+                f.setCargo(rs.getString("cargo"));
+            }
+        } catch (SQLException error) {
+            System.out.println("erro ao selecionar o funcionario" + error);
+        }
+        return f;
+
+    }    
 }
