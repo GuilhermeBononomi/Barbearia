@@ -104,14 +104,15 @@ public class AgendamentoServicoDAO implements IAgendamentoServico {
     }
 
     @Override
-    public ArrayList<AgendamentoDetalhado> buscarAgendamentoPorServico(String nome) {
+    public ArrayList<AgendamentoDetalhado> buscarAgendamentoPorServico(String nome, int idusuario) {
         ArrayList<AgendamentoDetalhado> lista = new ArrayList<>();
         try {
             String sql = "SELECT a.data, a.inicio, a.termino, s.nome " +
                     "FROM agendamento AS a " +
                     "JOIN agendamentoservico AS ags ON a.idagendamento = ags.idagendamento " +
                     "JOIN servico AS s ON ags.idservico = s.idservico " +
-                    "WHERE s.nome LIKE '%" + nome + "%';";
+                    "WHERE s.nome LIKE '%" + nome + "%'" +
+                    "and a.idusuario = " + idusuario + ";";
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
