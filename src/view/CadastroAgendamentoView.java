@@ -31,7 +31,7 @@ public class CadastroAgendamentoView {
                 id_servico = 1;
                 break;
             case 2:
-                id_servico = 2;
+                id_servico = 1;
                 break;
             default:
                 break;
