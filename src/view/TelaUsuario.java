@@ -18,8 +18,6 @@ public class TelaUsuario {
 
     public TelaUsuario(Usuario usuario) {
         int opcoes = 0;
-        String email = "";
-        String senha = "";
         
         do {
             System.out.println("\nSelecione a opção que deseja realizar:");
@@ -36,7 +34,7 @@ public class TelaUsuario {
                 System.exit(0);
                 break;
             case 1:
-                new CadastroAgendamentoView(email, senha);
+                new CadastroAgendamentoView(usuario.getEmail(), usuario.getSenha());
                 break;
             case 2:
                 telaUsuario.buscarProximosAgendamentos(usuario.getIdUsuario());
