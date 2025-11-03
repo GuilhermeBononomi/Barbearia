@@ -90,9 +90,8 @@ public class UsuarioController {
         }
     }
 
-    public void cadastrarAgendamento(String email, String senha, int id_servico, int funcionario, String data, String inicio, String termino, String observacao) {
+    public void cadastrarAgendamento(String email, String senha, int servico, int funcionario, String data, String inicio, String termino, String observacao) {
         Agendamento agendamento = new Agendamento();
-        
         try {
             usuario = login.buscarLogin(email, senha);
 
@@ -102,7 +101,7 @@ public class UsuarioController {
 
             agendamento = agendamentoDAO.selecionarAgendamento(data, inicio, termino);
 
-            agendamentoServicoDAO.inserirAgendamentoServico(agendamento.getIdAgendamento(), id_servico, observacao);
+            agendamentoServicoDAO.inserirAgendamentoServico(agendamento.getIdAgendamento(), servico, observacao);
         } catch (Exception error) {
             error.getMessage();
         } finally {
